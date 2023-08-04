@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-jenkins-maven-deployment
+spec:
+  selector:
+    matchLabels:
+      app: hello-jenkins-maven
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hello-jenkins-maven
+    spec:
+      containers:
+        - name: hello-jenkins-maven
+          image: localhost:32000/hello-jenkins-maven:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
